@@ -44,7 +44,6 @@ async def create_user():
         print(err.messages)
         error = {'status': 'failed', 'message': err.messages}
         return jsonify(error), 400
-    
     try:
         conn = await connect()
         result = await conn.fetch("INSERT INTO users(username, email, password) VALUES($1, $2, $3) RETURNING *", 
